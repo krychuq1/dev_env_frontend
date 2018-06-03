@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {CreateJob} from '../dialogs/create-job';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(): void {
+    console.log('opening');
+    let dialogRef = this.dialog.open(CreateJob, {
+      width: 'auto',
+    });
+  }
 }

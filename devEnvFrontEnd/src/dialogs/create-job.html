@@ -1,0 +1,27 @@
+<div class="create-job">
+  <h1>Create new job</h1>
+
+  <form class="create-job--form" #createJobForm="ngForm" (ngSubmit)="createJob()">
+    <mat-form-field >
+      <mat-select placeholder="Chemical type" #type="ngModel"  [(ngModel)]="job.type"  name="type" required>
+        <mat-option value="A">A</mat-option>
+        <mat-option value="B">B</mat-option>
+        <mat-option value="C">C</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Quantity units" type="number" #units="ngModel" required [(ngModel)]="job.quantity" name="units">
+      <!--errors-->
+      <div *ngIf="units.touched && units.errors">
+        <mat-error *ngIf="units.errors['required']">
+          Quantity is required
+        </mat-error>
+      </div>
+
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!createJobForm.valid">Generate job</button>
+  </form>
+
+
+</div>

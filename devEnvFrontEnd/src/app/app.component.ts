@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CreateJob} from '../dialogs/create-job';
+import {CreateJob} from '../dialogs/create-job/create-job';
 import {MatDialog} from '@angular/material';
 
 @Component({

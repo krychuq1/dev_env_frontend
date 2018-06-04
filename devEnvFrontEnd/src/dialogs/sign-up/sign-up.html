@@ -1,0 +1,76 @@
+<div class="sign-up dialog">
+  <h1>Sign up</h1>
+  <form class="sign-up--form dialog--form" #signUpForm="ngForm" (ngSubmit)="signUp()">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="name" #userInput="ngModel" [(ngModel)]="user.name" name="userInput"
+             required
+             pattern="[A-Za-z ]+$"
+             minlength="3">
+      <!--errors-->
+      <div *ngIf="userInput.touched && userInput.errors">
+        <mat-error *ngIf="userInput.errors['required']">
+          name is required
+        </mat-error>
+        <mat-error *ngIf="userInput.errors['pattern']">
+          name is invalid. Only characters
+        </mat-error>
+        <mat-error *ngIf="userInput.errors['minlength']">
+          Name should be at least 3 characters long
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Last name" #lastNameInput="ngModel" [(ngModel)]="user.lastName" name="lastNameInput"
+             required
+             pattern="[A-Za-z ]+$"
+             minlength="3">
+      <!--errors-->
+      <div *ngIf="lastNameInput.touched && lastNameInput.errors">
+        <mat-error *ngIf="lastNameInput.errors['required']">
+          Last name is required
+        </mat-error>
+        <mat-error *ngIf="lastNameInput.errors['pattern']">
+          Last name is invalid. Only characters
+        </mat-error>
+        <mat-error *ngIf="lastNameInput.errors['minlength']">
+          Last name should be at least 3 characters long
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="e-mail" #mailInput="ngModel" [(ngModel)]="user.mail" name="mailInput"
+             required
+             pattern='^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$'>
+      <!--errors-->
+      <div *ngIf="mailInput.touched && mailInput.errors">
+        <mat-error *ngIf="mailInput.errors['required']">
+          mail name is required
+        </mat-error>
+        <mat-error *ngIf="mailInput.errors['pattern']">
+          mail has invalid format
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="password" #passwordInput="ngModel" [(ngModel)]="user.password" name="passwordInput"
+             type="password"
+             required
+             minlength="6">
+      <!--errors-->
+      <div *ngIf="passwordInput.touched && passwordInput.errors">
+        <mat-error *ngIf="passwordInput.errors['required']">
+          Password name is required
+        </mat-error>
+        <mat-error *ngIf="passwordInput.errors['minlength']">
+          Password should be at least 6 characters long
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="!signUpForm.valid">Sign up</button>
+
+  </form>
+</div>

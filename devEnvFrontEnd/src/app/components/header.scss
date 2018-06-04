@@ -1,0 +1,25 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f2f2f2;
+  height: 90px;
+  padding: 0 40px;
+  .logo{
+    cursor: pointer;
+    img{
+      max-width: 185px;
+    }
+  }
+  .action-buttons{
+    display: flex;
+    align-items: center;
+    user-select: none;
+    p{
+      cursor: pointer;
+    }
+    .line{
+      margin: 0 10px;
+    }
+  }
+}

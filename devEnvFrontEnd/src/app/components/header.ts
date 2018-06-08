@@ -11,8 +11,7 @@ import {Login} from '../../dialogs/login/login';
 })
 export class Header {
   constructor(public dialog: MatDialog) {}
-  login(){
-    console.log('login');
+  login() {
     this.dialog.open(Login);
 
   }

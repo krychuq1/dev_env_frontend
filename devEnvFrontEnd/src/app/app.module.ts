@@ -12,6 +12,8 @@ import {FormsModule} from '@angular/forms';
 import {Header} from './components/header';
 import {SignUp} from '../dialogs/sign-up/sign-up';
 import {Login} from '../dialogs/login/login';
+import {LoginService} from '../services/user.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,14 @@ import {Login} from '../dialogs/login/login';
     BrowserModule,
     MatButtonModule,
     MatDialogModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatInputModule,
     FormsModule
   ],
   entryComponents: [CreateJob, SignUp, Login],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

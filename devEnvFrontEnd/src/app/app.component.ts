@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material';
 import {LocalStorage} from '@ngx-pwa/local-storage';
 import {User} from '../modals/user.model';
 import {UserService} from '../services/user.service';
+import {SignUp} from '../dialogs/sign-up/sign-up';
 
 @Component({
   selector: 'app-root',
@@ -25,10 +26,14 @@ export class AppComponent implements OnInit {
       width: 'auto',
     });
   }
+  signUp() {
+    this.dialog.open(SignUp);
+  }
 
   ngOnInit(): void {
     this.localStorage.getItem('token').subscribe(token => {
-      if (token){
+      if (token) {
+        console.log(token);
         this.userService.getUserBasedToken(token);
       }
     })

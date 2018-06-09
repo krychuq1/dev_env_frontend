@@ -44,5 +44,10 @@ export class UserService {
       this.userEmitter.emit(this.user);
     });
   }
+  addUser(token: string, user: User) {
+    const url = backend + 'employees/signup';
+    this.headers = this.headers.set('x-access-token', token);
+    return this.http.post(url, user,{ headers: this.headers} );
+  }
 }
 

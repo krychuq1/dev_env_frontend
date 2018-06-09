@@ -1,7 +1,9 @@
 <header></header>
-<div *ngIf="user">
-  <button mat-raised-button color="primary" (click)="openDialog()">Create job</button>
-  <button mat-raised-button color="primary">Add employee</button>
+<div *ngIf="user" class="action-buttons">
+  <button mat-raised-button color="primary"
+          (click)="openDialog()"
+          class="job">Create job</button>
+  <button mat-raised-button color="primary" *ngIf="user.role === 'admin'" (click)="signUp()">Add employee</button>
 
 </div>
 

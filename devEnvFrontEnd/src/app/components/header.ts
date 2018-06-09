@@ -27,9 +27,7 @@ export class Header {
     this.userService.logout();
 
   }
-  signUp() {
-    this.dialog.open(SignUp);
-  }
+
 
 
 }

@@ -1,16 +1,48 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {EventEmitter, Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import backend from '../variables';
+import {User} from '../modals/user.model';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Injectable()
-export class LoginService {
+export class UserService {
   private url = backend + 'employees/login';
-  constructor(private http: HttpClient) {}
+  private headers = new HttpHeaders();
+  private user: User;
+  public userEmitter: EventEmitter<User> = new EventEmitter();
+
+  constructor(private http: HttpClient, protected localStorage: LocalStorage) {}
 
   login(loginInfo) {
-    return this.http.post(this.url, loginInfo);
-
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url, loginInfo).subscribe((data) => {
+        this.user = data['employee'];
+        this.userEmitter.emit(this.user);
+        this.localStorage.setItem('token', data['token']).subscribe((val) => {
+          console.log(val);
+        });
+        resolve(true);
+      }, (err) => {
+        reject(false);
+      });
+    });
   }
+  logout() {
+    console.log('log out');
 
+    this.localStorage.removeItem('token').subscribe((val) => {
+      console.log(val);
+      this.userEmitter.emit(null);
+    });
+    // this.localStorage
+  }
+  getUserBasedToken(token: string) {
+    const url = backend + 'employees/getEmployee';
+    this.headers = this.headers.set('x-access-token', token);
+    this.http.get(url, {headers: this.headers}).subscribe((data) => {
+      this.user = new User(data['firstname'], data['lastname'], data['email'], data['role'], data['password']);
+      this.userEmitter.emit(this.user);
+    });
+  }
 }
 

@@ -2,9 +2,14 @@
   <div class="logo">
      <img src="assets/header/logo.png" alt="logo">
   </div>
-  <div class="action-buttons">
+  <div class="action-buttons" *ngIf="!user">
     <p (click)="login()">Login</p>
+    <!--<p class="line"> | </p>-->
+    <!--<p (click)="signUp()">Sign up</p>-->
+  </div>
+  <div class="welcome-button" *ngIf="user">
+    <p>Welcome, {{user.firstname}} {{user.lastname}}</p>
     <p class="line"> | </p>
-    <p (click)="signUp()">Sign up</p>
+    <p (click)="logout()">log out</p>
   </div>
 </div>

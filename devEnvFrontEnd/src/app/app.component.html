@@ -1,2 +1,7 @@
 <header></header>
-<button mat-raised-button color="primary" (click)="openDialog()">Create job</button>
+<div *ngIf="user">
+  <button mat-raised-button color="primary" (click)="openDialog()">Create job</button>
+  <button mat-raised-button color="primary">Add employee</button>
+
+</div>
+

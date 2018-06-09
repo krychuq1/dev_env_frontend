@@ -22,4 +22,7 @@
       margin: 0 10px;
     }
   }
+  .welcome-button{
+    @extend .action-buttons;
+  }
 }

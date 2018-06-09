@@ -12,7 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {Header} from './components/header';
 import {SignUp} from '../dialogs/sign-up/sign-up';
 import {Login} from '../dialogs/login/login';
-import {LoginService} from '../services/user.service';
+import {UserService} from '../services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
@@ -31,10 +31,10 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
   ],
   entryComponents: [CreateJob, SignUp, Login],
-  providers: [LoginService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

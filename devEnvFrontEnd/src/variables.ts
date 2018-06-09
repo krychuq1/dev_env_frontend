@@ -1,3 +1,3 @@
-const backend = 'http://localhost:7777/';
+const backend = 'http://localhost:8080/';
 
 export default backend;

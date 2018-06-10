@@ -1,14 +1,27 @@
 <div class="view-job-history dialog">
-  <div class="header">
-    <p>job id</p>
-    <p>status</p>
-    <p>creator</p>
-    <p>datetime</p>
+  <div class="holder">
+    <div class="header">
+      <div class="column">
+        <p>job id</p>
+      </div>
+      <div class="column">
+        <p>status</p>
+      </div>
+      <div class="column">
+        <p>creator</p>
+      </div>
+      <div class="column">
+        <p>datetime</p>
+      </div>
+    </div>
+    <div class="header active" *ngFor="let history of jobHistory;"
+         (click)="viewDetails(history.jobid)">
+      <p>{{history.jobid}}</p>
+      <p>{{history.jobstatus}}</p>
+      <p>{{history.email}}</p>
+      <p>{{history.datetime | date}}</p>
+    </div>
   </div>
-  <div class="header" *ngFor="let history of jobHistory;" >
-    <p>{{history.jobid}}</p>
-    <p>{{history.jobstatus}}</p>
-    <p>{{history.email}}</p>
-    <p>{{history.datetime}}</p>
-  </div>
+  <button mat-raised-button color="primary" (click)="close()" class="button-btn">Close</button>
+
 </div>

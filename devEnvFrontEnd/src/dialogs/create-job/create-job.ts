@@ -28,7 +28,6 @@ export class CreateJob {
     const status = 'incoming';
     this.jobService.createJob(this.data.token, this.job, status).subscribe(created => {
       this.isDone = true;
-
     }, error => {
       console.log(error);
     });

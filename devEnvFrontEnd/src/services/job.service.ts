@@ -15,6 +15,7 @@ export class JobService {
       status: status
     };
     this.headers = this.headers.set('x-access-token', token);
+    console.log('the url is: ', this.url);
     return this.http.post(this.url, obj, {headers: this.headers});
   }
 

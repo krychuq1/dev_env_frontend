@@ -5,5 +5,10 @@
     <p>creator</p>
     <p>datetime</p>
   </div>
-
+  <div class="header" *ngFor="let history of jobHistory;" >
+    <p>{{history.jobid}}</p>
+    <p>{{history.jobstatus}}</p>
+    <p>{{history.email}}</p>
+    <p>{{history.datetime}}</p>
+  </div>
 </div>

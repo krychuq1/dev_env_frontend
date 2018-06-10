@@ -20,6 +20,7 @@ export class ViewJobHistory {
     this.jobHistoryService.getAllJobHistory(this.data.token).subscribe(history => {
       this.jobHistory = history as JobHistoryModel[];
       console.log(this.jobHistory);
+
     }, error1 => {
 
     });

@@ -6,11 +6,12 @@ import {User} from '../modals/user.model';
 import {UserService} from '../services/user.service';
 import {SignUp} from '../dialogs/sign-up/sign-up';
 import {WarehouseModel} from '../modals/warehouse.model';
+import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   user: User;
@@ -20,6 +21,12 @@ export class AppComponent implements OnInit {
               protected localStorage: LocalStorage, public userService: UserService) {
     this.userService.userEmitter.subscribe(next => {
       this.user = next;
+      this.token = this.userService.token;
+    });
+    this.localStorage.getItem('token').subscribe(token => {
+      if (token) {
+        this.userService.getUserBasedToken(token);
+      }
     });
   }
 
@@ -39,14 +46,16 @@ export class AppComponent implements OnInit {
   setWarehouses(warehouses) {
     this.warehouses = warehouses;
   }
-
-  ngOnInit(): void {
-    this.localStorage.getItem('token').subscribe(token => {
-      if (token) {
-        this.token = token;
-        console.log(token);
-        this.userService.getUserBasedToken(token);
+  openHistory(){
+    let dialogRef = this.dialog.open(ViewJobHistory, {
+      width: 'auto',
+      data: {
+        token: this.token,
       }
     });
+  }
+
+  ngOnInit(): void {
+
   }
 }

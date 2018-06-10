@@ -17,6 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {Warehouses} from './components/warehouses/warehouses';
 import {WarehousesService} from '../services/warehouses.service';
 import {JobService} from '../services/job.service';
+import {JobHistoryService} from '../services/jobHistory.service';
+import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {JobService} from '../services/job.service';
     Header,
     SignUp,
     Login,
-    Warehouses
+    Warehouses,
+    ViewJobHistory
   ],
   imports: [
     BrowserModule,
@@ -37,8 +40,8 @@ import {JobService} from '../services/job.service';
     MatInputModule,
     FormsModule,
   ],
-  entryComponents: [CreateJob, SignUp, Login],
-  providers: [UserService, WarehousesService, JobService],
+  entryComponents: [CreateJob, SignUp, Login, ViewJobHistory],
+  providers: [UserService, WarehousesService, JobService, JobHistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

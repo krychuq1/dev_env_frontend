@@ -25,7 +25,8 @@ export class CreateJob {
     this.dialogRef.close();
   }
   createJob() {
-    this.jobService.createJob(this.data.token, this.job).subscribe(created => {
+    const status = 'incoming';
+    this.jobService.createJob(this.data.token, this.job, status).subscribe(created => {
       this.isDone = true;
 
     }, error => {

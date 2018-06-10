@@ -9,9 +9,13 @@ export class JobService {
   private headers = new HttpHeaders();
   constructor(private http: HttpClient) {}
 
-  createJob(token: string, job: Job) {
+  createJob(token: string, job: Job, status: string) {
+    const obj = {
+      job: job,
+      status: status
+    };
     this.headers = this.headers.set('x-access-token', token);
-    return this.http.post(this.url, job, {headers: this.headers});
+    return this.http.post(this.url, obj, {headers: this.headers});
   }
 
 }

@@ -30,6 +30,7 @@ export class Login {
     this.userService.login(this.login).then(data => {
       this.dialogRef.close();
     }, err => {
+        console.log(err, '< ----- err ')
         this.error = 'User name or password is invalid';
     });
   }

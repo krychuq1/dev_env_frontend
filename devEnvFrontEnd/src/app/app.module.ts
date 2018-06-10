@@ -16,6 +16,7 @@ import {UserService} from '../services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {Warehouses} from './components/warehouses/warehouses';
 import {WarehousesService} from '../services/warehouses.service';
+import {JobService} from '../services/job.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import {WarehousesService} from '../services/warehouses.service';
     FormsModule,
   ],
   entryComponents: [CreateJob, SignUp, Login],
-  providers: [UserService, WarehousesService],
+  providers: [UserService, WarehousesService, JobService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

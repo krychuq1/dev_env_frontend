@@ -1,5 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {WarehouseModel} from '../../modals/warehouse.model';
+import {Job} from '../../modals/job.model';
+import {JobService} from '../../services/job.service';
 
 @Component({
   selector: 'create-job-dialog',
@@ -7,22 +10,27 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   styleUrls: ['create-job.scss']
 })
 export class CreateJob {
-  public  job: any;
+  public  job: Job;
+  public warehouses: WarehouseModel[];
+  public isDone: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<CreateJob>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.job = {
-      type: 'A',
-      quantity: null
-    };
+    @Inject(MAT_DIALOG_DATA) public data: any, private jobService: JobService) {
+    this.job = new Job(null, 'A', null, 'no');
+    this.warehouses = data.warehouses;
   }
 
-  onNoClick(): void {
+  close(): void {
     this.dialogRef.close();
   }
   createJob() {
-    console.log('createJob form ', this.job);
+    this.jobService.createJob(this.data.token, this.job).subscribe(created => {
+      this.isDone = true;
+
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

@@ -7,4 +7,4 @@
 
 </div>
 
-<warehouses *ngIf="user" [token]="token"></warehouses>
+<warehouses *ngIf="user" [token]="token" (warehousesOutput)="setWarehouses($event)"></warehouses>

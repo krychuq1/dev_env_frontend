@@ -1,27 +1,50 @@
-<div class="create-job">
-  <h1>Create new job</h1>
+<div class="create-job dialog">
+  <div *ngIf="!isDone">
+    <h1>Create new job</h1>
+    <form class="create-job--form" #createJobForm="ngForm" (ngSubmit)="createJob()">
+      <mat-form-field >
+        <mat-select placeholder="Chemical type" #type="ngModel"  [(ngModel)]="job.chemicaltype"  name="type" required>
+          <mat-option value="A">A</mat-option>
+          <mat-option value="B">B</mat-option>
+          <mat-option value="C">C</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <form class="create-job--form" #createJobForm="ngForm" (ngSubmit)="createJob()">
-    <mat-form-field >
-      <mat-select placeholder="Chemical type" #type="ngModel"  [(ngModel)]="job.type"  name="type" required>
-        <mat-option value="A">A</mat-option>
-        <mat-option value="B">B</mat-option>
-        <mat-option value="C">C</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Quantity units" type="number" #units="ngModel" required [(ngModel)]="job.chemicalquantity" name="units">
+        <!--errors-->
+        <div *ngIf="units.touched && units.errors">
+          <mat-error *ngIf="units.errors['required']">
+            Quantity is required
+          </mat-error>
+        </div>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-select placeholder="warehouse" #warehouseId="ngModel" [(ngModel)] ="job.warehouseid" name="warehouseId">
+          <mat-option *ngFor="let wh of warehouses;  let i = index" [value]="wh.id">
+            warehouse #{{i + 1}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Quantity units" type="number" #units="ngModel" required [(ngModel)]="job.quantity" name="units">
-      <!--errors-->
-      <div *ngIf="units.touched && units.errors">
-        <mat-error *ngIf="units.errors['required']">
-          Quantity is required
-        </mat-error>
-      </div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="special status" #status="ngModel" required [(ngModel)]="job.special_status" name="status">
+        <!--errors-->
+        <div *ngIf="status.touched && status.errors">
+          <mat-error *ngIf="status.errors['required']">
+            special status is required
+          </mat-error>
+        </div>
+      </mat-form-field>
 
-    </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="!createJobForm.valid">Generate job</button>
-  </form>
+      <button mat-raised-button color="primary" [disabled]="!createJobForm.valid">Generate job</button>
+    </form>
 
 
+  </div>
+  <div *ngIf="isDone" class="done">
+    <h1>Job was successfully created</h1>
+    <img src="assets/green_tick.png" alt="green_tick">
+    <button mat-raised-button color="primary" (click)="close()">Close</button>
+  </div>
 </div>

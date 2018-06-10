@@ -5,6 +5,7 @@ import {LocalStorage} from '@ngx-pwa/local-storage';
 import {User} from '../modals/user.model';
 import {UserService} from '../services/user.service';
 import {SignUp} from '../dialogs/sign-up/sign-up';
+import {WarehouseModel} from '../modals/warehouse.model';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import {SignUp} from '../dialogs/sign-up/sign-up';
 export class AppComponent implements OnInit {
   user: User;
   token: string;
+  warehouses: WarehouseModel[];
   constructor(public dialog: MatDialog,
               protected localStorage: LocalStorage, public userService: UserService) {
     this.userService.userEmitter.subscribe(next => {
@@ -25,18 +27,26 @@ export class AppComponent implements OnInit {
     console.log('opening');
     let dialogRef = this.dialog.open(CreateJob, {
       width: 'auto',
+      data: {
+        token: this.token,
+        warehouses: this.warehouses
+      }
     });
   }
   signUp() {
     this.dialog.open(SignUp);
+  }
+  setWarehouses(warehouses) {
+    this.warehouses = warehouses;
   }
 
   ngOnInit(): void {
     this.localStorage.getItem('token').subscribe(token => {
       if (token) {
         this.token = token;
+        console.log(token);
         this.userService.getUserBasedToken(token);
       }
-    })
+    });
   }
 }

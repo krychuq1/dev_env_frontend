@@ -9,11 +9,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-import {Header} from './components/header';
+import {Header} from './components/header/header';
 import {SignUp} from '../dialogs/sign-up/sign-up';
 import {Login} from '../dialogs/login/login';
 import {UserService} from '../services/user.service';
 import {HttpClientModule} from '@angular/common/http';
+import {Warehouses} from './components/warehouses/warehouses';
+import {WarehousesService} from '../services/warehouses.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     CreateJob,
     Header,
     SignUp,
-    Login
+    Login,
+    Warehouses
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
   ],
   entryComponents: [CreateJob, SignUp, Login],
-  providers: [UserService],
+  providers: [UserService, WarehousesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

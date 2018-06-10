@@ -1,0 +1,10 @@
+.warehouses{
+  padding: 40px 40px;
+  display: flex;
+  justify-content: space-between;
+  .warehouse{
+    .title{
+      font-weight: bold;
+    }
+  }
+}

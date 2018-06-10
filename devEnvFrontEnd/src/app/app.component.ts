@@ -13,6 +13,7 @@ import {SignUp} from '../dialogs/sign-up/sign-up';
 })
 export class AppComponent implements OnInit {
   user: User;
+  token: string;
   constructor(public dialog: MatDialog,
               protected localStorage: LocalStorage, public userService: UserService) {
     this.userService.userEmitter.subscribe(next => {
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.localStorage.getItem('token').subscribe(token => {
       if (token) {
-        console.log(token);
+        this.token = token;
         this.userService.getUserBasedToken(token);
       }
     })

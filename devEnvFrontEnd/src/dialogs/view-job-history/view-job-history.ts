@@ -25,6 +25,10 @@ export class ViewJobHistory {
 
     });
   }
+  viewDetails(jobId) {
+    console.log('jop id ', jobId);
+
+  }
   close(): void {
     this.dialogRef.close();
   }

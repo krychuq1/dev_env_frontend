@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {User} from '../../modals/user.model';
 import {JobHistoryService} from '../../services/jobHistory.service';
@@ -9,15 +9,33 @@ import {JobHistoryModel} from '../../modals/jobHistory.model';
   templateUrl: 'view-job-history.html',
   styleUrls: ['view-job-history.scss']
 })
-export class ViewJobHistory {
+export class ViewJobHistory{
   public error: string;
   public isDone: boolean;
   jobHistory: JobHistoryModel[];
-  selectedJob;
+  selectedJobId;
 
   constructor(
     public dialogRef: MatDialogRef<ViewJobHistory>,
     @Inject(MAT_DIALOG_DATA) public data: any, private jobHistoryService: JobHistoryService) {
+    this.getAllJobs();
+  }
+  viewDetails(jobId) {
+    console.log('jop id ', jobId);
+    this.selectedJobId = jobId;
+  }
+  saveStatusChange(status){
+    console.log('You clicked: status change with ', this.selectedJobId , ' and ', status);
+    if(this.selectedJobId&&status){
+      this.jobHistoryService.updateStatusOfSelectedJob(this.data.token, this.selectedJobId, status).subscribe(created => {
+        this.isDone = true;
+        this.getAllJobs();
+      }, error => {
+        console.log(error);
+      });
+    }
+  }
+  getAllJobs(){
     this.jobHistoryService.getAllJobHistory(this.data.token).subscribe(history => {
       this.jobHistory = history as JobHistoryModel[];
       console.log(this.jobHistory);
@@ -26,18 +44,9 @@ export class ViewJobHistory {
 
     });
   }
-  viewDetails(jobId) {
-    console.log('jop id ', jobId);
-    this.selectedJob = jobId;
-  }
-  saveStatusChange(status){
-    if(this.selectedJob&&status){
-      //this.jobHistoryService.updateStatusOfSelectedJob();
-    }
-  }
+
   close(): void {
     this.dialogRef.close();
   }
-
 
 }

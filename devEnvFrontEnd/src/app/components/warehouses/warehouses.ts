@@ -13,7 +13,10 @@ export class Warehouses implements OnInit {
    @Output() warehouseInventoryOutput: EventEmitter<WarehousesChemicalsModel[]> = new EventEmitter();
    warehouses: WarehouseModel[];
    inventory: WarehousesChemicalsModel[];
-  constructor(private warehousesServices: WarehousesService) {}
+  constructor(private warehousesServices: WarehousesService) {
+    // subscrobe to the event form jobhistory and call getWarehouse invatotry to update warehouses 
+  }
+
   ngOnInit(): void {
     this.warehousesServices.getWarehouses(this.token).subscribe(warehouses => {
       this.warehouses = warehouses as WarehouseModel[];

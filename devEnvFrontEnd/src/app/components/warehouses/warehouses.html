@@ -1,11 +1,19 @@
 <div class="warehouses" *ngIf="inventory">
-  <div class="warehouse" *ngFor="let warehouse of warehouses; let i = index" >
-    <p class="title">warehouse #{{i + 1}}</p>
-    <p>max capacity: {{warehouse.maxstorage}}</p>
-    <div *ngFor="let inv of inventory[i+1]" >
-      <!--{{inv|json}}-->
-      <p>Chemical</p>
-      <p>{{inv.chemical.type}} - with {{inv.chemicalquantity}} units</p>
+  <div class="warehouse-column" *ngFor="let warehouse of warehouses; let i = index" >
+    <div class="header">
+      <p class="title">warehouse #{{i + 1}}</p>
+      <p>max capacity: {{warehouse.maxstorage}}</p>
+    </div>
+    <div class="body">
+      <p>type</p>
+      <p>quantity</p>
+    </div>
+    <div *ngFor="let inv of inventory[i+1]" class="row"
+         [ngClass]="{'red': (warehouse.maxstorage - inv.takenSpace) <= 0, 'green': (warehouse.maxstorage - inv.takenSpace) > 0 }">
+      <p *ngIf="inv.chemical">{{inv.chemical.type}}</p>
+      <p *ngIf="inv.chemical">{{inv.chemicalquantity}} </p>
+      <p *ngIf="!inv.chemical" class="footer">
+        available space: {{ warehouse.maxstorage - inv.takenSpace}}</p>
     </div>
 
   </div>

@@ -22,6 +22,17 @@
       <p>{{history.datetime | date}}</p>
     </div>
   </div>
+
+  <p>Select status for job</p>
+  <mat-form-field>
+    <mat-select [(value)]="selectedApprove">
+      <mat-option>None</mat-option>
+      <mat-option value="Approved">Approved</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>You selected: {{selectedApprove}} for job with id {{selectedJob}}</p>
+  <button mat-raised-button color="primary" (click)="saveStatusChange(selectedApprove)" class="button-btn">Status Change</button>
   <button mat-raised-button color="primary" (click)="close()" class="button-btn">Close</button>
 
 </div>

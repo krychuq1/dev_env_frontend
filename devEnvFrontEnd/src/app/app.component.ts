@@ -6,6 +6,7 @@ import {User} from '../modals/user.model';
 import {UserService} from '../services/user.service';
 import {SignUp} from '../dialogs/sign-up/sign-up';
 import {WarehouseModel} from '../modals/warehouse.model';
+import {WarehousesChemicalsModel} from "../modals/warehousesChemicals.model";
 import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   user: User;
   token: string;
   warehouses: WarehouseModel[];
+  inventory: WarehousesChemicalsModel[];
   constructor(public dialog: MatDialog,
               protected localStorage: LocalStorage, public userService: UserService) {
     this.userService.userEmitter.subscribe(next => {

@@ -13,6 +13,7 @@ export class ViewJobHistory {
   public error: string;
   public isDone: boolean;
   jobHistory: JobHistoryModel[];
+  selectedJob;
 
   constructor(
     public dialogRef: MatDialogRef<ViewJobHistory>,
@@ -27,7 +28,12 @@ export class ViewJobHistory {
   }
   viewDetails(jobId) {
     console.log('jop id ', jobId);
-
+    this.selectedJob = jobId;
+  }
+  saveStatusChange(status){
+    if(this.selectedJob&&status){
+      //this.jobHistoryService.updateStatusOfSelectedJob();
+    }
   }
   close(): void {
     this.dialogRef.close();

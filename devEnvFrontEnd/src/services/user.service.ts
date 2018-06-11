@@ -43,7 +43,9 @@ export class UserService {
     const url = backend + 'employees/getEmployee';
     this.headers = this.headers.set('x-access-token', token);
     this.http.get(url, {headers: this.headers}).subscribe((data) => {
-      this.user = new User(data['firstname'], data['lastname'], data['email'], data['role'], data['password']);
+      console.log(data);
+      this.user = new User(data[0]['firstname'], data[0]['lastname'],
+        data[0]['email'], data[0]['role'], data[0]['password']);
       this.token = token;
       this.userEmitter.emit(this.user);
     });

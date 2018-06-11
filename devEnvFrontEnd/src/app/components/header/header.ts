@@ -15,6 +15,8 @@ export class Header {
   constructor(public dialog: MatDialog, public userService: UserService ) {
     this.userService.userEmitter.subscribe(next => {
       this.user = next;
+      console.log('user emitted header ', this.user);
+
     });
   }
 

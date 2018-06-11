@@ -1,7 +1,13 @@
-<div class="warehouses">
+<div class="warehouses" *ngIf="inventory">
   <div class="warehouse" *ngFor="let warehouse of warehouses; let i = index" >
     <p class="title">warehouse #{{i + 1}}</p>
     <p>max capacity: {{warehouse.maxstorage}}</p>
-    <!--{{warehouse | json}} {{i}}-->
+    <div *ngFor="let inv of inventory[i+1]" >
+      <!--{{inv|json}}-->
+      <p>Chemical</p>
+      <p>{{inv.chemical.type}} - with {{inv.chemicalquantity}} units</p>
+    </div>
+
   </div>
+
 </div>

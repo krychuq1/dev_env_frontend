@@ -12,5 +12,9 @@ export class JobHistoryService {
     this.headers = this.headers.set('x-access-token', token);
     return this.http.get(this.url, {headers: this.headers});
   }
+  updateStatusOfSelectedJob(token: string, jobid: number, status: string){
+   // this.headers = this.headers.set('x-access-token', token);
+   // return this.http.put()
+  }
 
 }

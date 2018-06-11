@@ -18,15 +18,10 @@ export class Warehouses implements OnInit {
     this.warehousesServices.getWarehouses(this.token).subscribe(warehouses => {
       this.warehouses = warehouses as WarehouseModel[];
       this.warehousesOutput.emit(this.warehouses);
-      console.log(this.warehouses);
     });
     this.warehousesServices.getWarehouseInventory(this.token).subscribe(data =>{
       this.inventory = data as WarehousesChemicalsModel[];
       this.warehouseInventoryOutput.emit(this.inventory);
-      for (var key in this.inventory) {
-        console.log("Key: " + key);
-        console.log("Value: " + this.inventory[key]);
-      }
     });
   }
 }

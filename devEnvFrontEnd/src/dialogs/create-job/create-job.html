@@ -3,10 +3,10 @@
     <h1>Create new job</h1>
     <form class="create-job--form" #createJobForm="ngForm" (ngSubmit)="createJob()">
       <mat-form-field >
-        <mat-select placeholder="Chemical type" #type="ngModel"  [(ngModel)]="job.chemicaltype"  name="type" required>
-          <mat-option value="A">A</mat-option>
-          <mat-option value="B">B</mat-option>
-          <mat-option value="C">C</mat-option>
+        <mat-select placeholder="Chemical type" #type="ngModel"  [(ngModel)]="job.chemicalid"  name="type" required>
+          <mat-option value=1>A</mat-option>
+          <mat-option value=2>B</mat-option>
+          <mat-option value=3>C</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -22,7 +22,7 @@
       <mat-form-field >
         <mat-select placeholder="warehouse" #warehouseId="ngModel" [(ngModel)] ="job.warehouseid" name="warehouseId">
           <mat-option *ngFor="let wh of warehouses;  let i = index" [value]="wh.id">
-            warehouse #{{i + 1}}
+            warehouse #{{wh.id}}
           </mat-option>
         </mat-select>
       </mat-form-field>

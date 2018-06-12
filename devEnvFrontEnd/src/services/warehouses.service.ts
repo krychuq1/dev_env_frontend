@@ -38,4 +38,5 @@ export class WarehousesService {
     this.headers = this.headers.set('x-access-token', token);
     return this.http.get(url, {headers: this.headers});
   }
+
 }

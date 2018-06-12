@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import backend from '../variables';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 

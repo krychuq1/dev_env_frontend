@@ -17,8 +17,9 @@ export class CreateJob {
   constructor(
     public dialogRef: MatDialogRef<CreateJob>,
     @Inject(MAT_DIALOG_DATA) public data: any, private jobService: JobService) {
-    this.job = new Job(null, 'A', null, 'no');
+    this.job = new Job(null, 1, null, 'no');
     this.warehouses = data.warehouses;
+    console.log('Warehouses are: ', this.warehouses);
   }
 
   close(): void {
@@ -26,7 +27,8 @@ export class CreateJob {
   }
   createJob() {
     const status = 'incoming';
-    this.jobService.createJob(this.data.token, this.job, status).subscribe(created => {
+    //console.log('job is now: ', this.job);
+    this.jobService.createJob(this.data.token, this.job, status).then(created => {
       this.isDone = true;
     }, error => {
       console.log(error);

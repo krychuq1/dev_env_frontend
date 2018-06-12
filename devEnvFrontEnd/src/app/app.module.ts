@@ -19,6 +19,7 @@ import {WarehousesService} from '../services/warehouses.service';
 import {JobService} from '../services/job.service';
 import {JobHistoryService} from '../services/jobHistory.service';
 import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
+import {ViewActiveJobs} from "../dialogs/view-active-jobs/view-active-jobs";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
     SignUp,
     Login,
     Warehouses,
-    ViewJobHistory
+    ViewJobHistory,
+    ViewActiveJobs
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
     MatInputModule,
     FormsModule,
   ],
-  entryComponents: [CreateJob, SignUp, Login, ViewJobHistory],
+  entryComponents: [CreateJob, SignUp, Login, ViewJobHistory, ViewActiveJobs],
   providers: [UserService, WarehousesService, JobService, JobHistoryService],
   bootstrap: [AppComponent]
 })

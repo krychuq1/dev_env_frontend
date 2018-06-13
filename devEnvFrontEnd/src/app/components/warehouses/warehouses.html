@@ -1,7 +1,7 @@
 <div class="warehouses" *ngIf="inventory">
   <div class="warehouse-column" *ngFor="let warehouse of warehouses; let i = index" >
     <div class="header">
-      <p class="title">warehouse #{{warehouse.id}}</p>
+      <p class="title">warehouse #{{i + 1}}</p>
       <p>max capacity: {{warehouse.maxstorage}}</p>
     </div>
     <div class="body">

@@ -1,17 +1,15 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {User} from '../../modals/user.model';
 import {JobHistoryService} from '../../services/jobHistory.service';
 import {JobHistoryModel} from '../../modals/jobHistory.model';
-import {JobService} from '../../services/job.service';
-import {WarehousesService} from "../../services/warehouses.service";
+import {ViewJobHistory} from "../view-job-history/view-job-history";
 
 @Component({
-  selector: 'view-job-history',
-  templateUrl: 'view-job-history.html',
-  styleUrls: ['view-job-history.scss']
+  selector: 'view-active-jobs',
+  templateUrl: 'view-active-jobs.html',
+  styleUrls: ['view-active-jobs.scss']
 })
-export class ViewJobHistory {
+export class ViewActiveJobs {
   public error: string;
   public isDone: boolean;
   jobHistory: JobHistoryModel[];
@@ -19,7 +17,7 @@ export class ViewJobHistory {
 
   constructor(
     public dialogRef: MatDialogRef<ViewJobHistory>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private jobHistoryService: JobHistoryService, private jobService: JobService, private warehousesService: WarehousesService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private jobHistoryService: JobHistoryService) {
     this.jobHistoryService.getAllJobHistory(this.data.token).subscribe(history => {
       this.jobHistory = history as JobHistoryModel[];
       console.log(this.jobHistory);
@@ -37,7 +35,6 @@ export class ViewJobHistory {
     if(this.selectedJob&&status){
       this.jobHistoryService.updateStatusOfSelectedJob(this.data.token, this.selectedJob, status).then(created => {
         this.isDone = true;
-        this.getJobById(this.data.token, this.selectedJob);
         this.getAllJobs();
       }, error => {
         console.log(error);
@@ -54,18 +51,9 @@ export class ViewJobHistory {
 
     });
   }
-  getJobById(token, jobid){
-    this.jobService.getJobById(token, jobid).subscribe(job =>{
-      console.log('THis is job returned ', job);
-      this.warehousesService.postInWarehouseInventory(token, job[0].warehouseid, job[0].chemicalid, job[0].chemicalquantity).then( response =>{
-        console.log('This is what is posted in inventory now: ', response);
-      })
-    })
-  }
 
   close(): void {
     this.dialogRef.close();
   }
-
 
 }

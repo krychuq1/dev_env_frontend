@@ -8,6 +8,7 @@ import {SignUp} from '../dialogs/sign-up/sign-up';
 import {WarehouseModel} from '../modals/warehouse.model';
 import {WarehousesChemicalsModel} from "../modals/warehousesChemicals.model";
 import {ViewJobHistory} from '../dialogs/view-job-history/view-job-history';
+import {ViewActiveJobs} from "../dialogs/view-active-jobs/view-active-jobs";
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,14 @@ export class AppComponent implements OnInit {
   }
   openHistory(){
     let dialogRef = this.dialog.open(ViewJobHistory, {
+      width: 'auto',
+      data: {
+        token: this.token,
+      }
+    });
+  }
+  openJobsForApproval(){
+    let dialogRef = this.dialog.open(ViewActiveJobs, {
       width: 'auto',
       data: {
         token: this.token,

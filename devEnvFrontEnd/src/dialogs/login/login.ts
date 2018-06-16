@@ -17,7 +17,7 @@ export class Login {
       email: null,
       password: null
     };
-    this.insertTestValues();
+    // this.insertTestValues();
   }
   onNoClick(): void {
     this.dialogRef.close();

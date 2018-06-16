@@ -17,9 +17,9 @@ export class SignUp {
   constructor(
     public dialogRef: MatDialogRef<SignUp>,
     @Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService,  protected localStorage: LocalStorage) {
-    // this.user = new User('', '', '', '', '');
+    this.user = new User('', '', '', '', '');
     // test value
-    this.user = new User('test', 'test', 'test@test.com', 'basicPrivilege', 'master');
+    // this.user = new User('test', 'test', 'test@test.com', 'basicPrivilege', 'master');
   }
   close(): void {
     this.dialogRef.close();
